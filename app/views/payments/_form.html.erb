@@ -1,0 +1,14 @@
+<%= simple_form_for @payment, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :user_id %>
+  <%= error_span(@payment[:user_id]) %>
+  <%= f.input :group_id %>
+  <%= error_span(@payment[:group_id]) %>
+  <%= f.input :amount %>
+  <%= error_span(@payment[:amount]) %>
+  <%= f.input :description %>
+  <%= error_span(@payment[:description]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                payments_path, :class => 'btn btn-default' %>
+<% end %>
