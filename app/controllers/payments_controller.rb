@@ -3,16 +3,13 @@ class PaymentsController < ApplicationController
 
   def index
     @payments = Payment.all
-#    respond_with(@payments)
   end
 
   def show
-#    respond_with(@payment)
   end
 
   def new
     @payment = Payment.new
-#    respond_with(@payment)
   end
 
   def edit
@@ -21,17 +18,36 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(payment_params)
     @payment.save
-#    respond_with(@payment)
+    respond_to do |format|
+      if @payment.save
+        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
+        format.json { render :show, status: :created, location: @payment }
+      else
+        format.html { render :new }
+        format.json { render json: @payment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
     @payment.update(payment_params)
-#    respond_with(@payment)
+    respond_to do |format|
+      if @payment.update(payment_params)
+        format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @payment }
+      else
+        format.html { render :edit }
+        format.json { render json: @payment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
     @payment.destroy
-#    respond_with(@payment)
+    respond_to do |format|
+      format.html { redirect_to payments_url, notice: 'Payment was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
