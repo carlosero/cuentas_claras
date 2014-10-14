@@ -3,7 +3,7 @@ class CreatePayments < ActiveRecord::Migration
     create_table :payments do |t|
       t.references :user, index: true
       t.references :group, index: true
-      t.decimal :amount
+      t.decimal :amount, null: false
       t.string :description
 
       t.timestamps

@@ -3,7 +3,7 @@ class CreateDebts < ActiveRecord::Migration
     create_table :debts do |t|
       t.references :payment, index: true
       t.references :user, index: true
-      t.decimal :amount
+      t.decimal :amount, null: false
       t.boolean :paid
       t.datetime :paid_date
 

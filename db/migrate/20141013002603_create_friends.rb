@@ -1,8 +1,8 @@
 class CreateFriends < ActiveRecord::Migration
   def change
     create_table :friends do |t|
-      t.references :user, index: true
-      t.integer :to
+      t.integer :from, index: true
+      t.integer :to, index: true
 
       t.timestamps
     end
